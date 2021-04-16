@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.v2.6.12.js"></script>
+    <script src="./js/vue-router.v3.5.1.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>Hello App!</h1>
+        <p>
+            <!-- 使用router-like组件来导航 -->
+            <!-- 通过传入`to` 属性指定链接 -->
+            <!-- router-like  默认会被渲染成一个a标签 -->
+            <router-link to='/foo'>Go to Foo</router-link>
+            <router-link to='/bar'>Go to Bar</router-link>
+        </p>
+        <!-- 路由出口 -->
+        <!-- 路由匹配的组件将渲染在这里 -->
+        <router-view></router-view>
+    </div>
+    <script>
+        // 定义两个组件     template组件模板
+        const Foo = {template : '<div>foo</div>'}
+        const Bar = {template : '<div>bar</div>'}
+        // 定义路由
+        const routes = [
+            // path 路径    component组件
+            // 意思是/foo这个路径就是刚定义的Foo这个组件
+            {path : '/foo', component: Foo },
+            {path : '/bar', component: Bar },
+        ]
+        // 创建router实例
+        const router = new VueRouter({
+            routes  // (缩写) 相当于 routes: routes
+
+            // routes: routes   前：路由  后：定义路由的变量名
+        })
+        // 挂载到vue实例
+        new Vue({
+            el : '#app',
+            router  : router
+        })
+    </script>
+</body>
+</html>
